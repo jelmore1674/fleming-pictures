@@ -14,7 +14,7 @@ nav {
     }
     a {
         color: white;
-        font-size: 48px;
+        font-size: 3rem;
         margin-top: 160px;
         text-decoration: none;
         transition: 2s;
@@ -25,6 +25,18 @@ nav {
             transform: translateY(-20%);
             transition: ease-in-out;
             transition-duration: 2s;
+        }
+    }
+}
+
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+    nav {
+        .nav {
+            width: 90%;
+        }
+        a {
+            font-size: 2rem;
         }
     }
 }
