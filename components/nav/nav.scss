@@ -4,20 +4,33 @@ nav {
     align-content: center;
     .nav {
         display: flex;
-        width: 60%;
+        width: 66%;
         justify-content: space-between;
         align-items: center;
         .logo {
             max-width: 267px;
             margin-top: 47px;
+            animation: slideIn 2s ease-in-out;
         }
+        @keyframes slideIn {
+            0% {
+                transform: translateY(-260px)
+            }
+            100% {
+                transform: translateY(0px)
+            }
+        }
+    }
+    .nav-item {
+        margin-top: 10rem;
     }
     a {
         color: white;
         font-size: 3rem;
-        margin-top: 160px;
+        
         text-decoration: none;
         transition: 2s;
+        
         &:hover {
             color: black;
             -webkit-text-stroke-width: 1px;
@@ -25,6 +38,31 @@ nav {
             transform: translateY(-20%);
             transition: ease-in-out;
             transition-duration: 2s;
+        }
+        
+    }
+    .about-nav-item {
+        transition: 2s;
+        animation: slideInFromLeft 2s;
+        @keyframes slideInFromLeft {
+            0% {
+                transform: translateX(-50%);
+            }
+            100% {
+                transform: translateX(0px);
+            }
+        }
+    }
+    .connect-nav-item {
+        transition: 2s;
+        animation: slideInFromRight 2s;
+        @keyframes slideInFromRight {
+            0% {
+                transform: translateX(50%);
+            }
+            100% {
+                transform: translateX(0px);
+            }
         }
     }
 }
@@ -34,6 +72,9 @@ $breakpoint-tablet: 768px;
     nav {
         .nav {
             width: 90%;
+            .logo {
+                max-width: 166px;
+            }
         }
         a {
             font-size: 2rem;
