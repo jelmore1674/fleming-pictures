@@ -1,17 +1,17 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import {Animated} from "react-animated-css";
+import { Animated } from 'react-animated-css';
 
 export default function Nav() {
 	return (
 		<nav>
 			<div className='nav'>
-				<div className='nav-item about-nav-item'>
-				<Link href='/about' >About</Link>
+				<div className='nav-item about-nav-item' data-testid='/about'>
+					<Link href='/about'>About</Link>
 				</div>
-	
-				<div className='logo'>
+
+				<div className='logo' data-testid='logo'>
 					<Image
 						src='/assets/images/FlemingPictures.png'
 						alt='logo'
@@ -19,8 +19,10 @@ export default function Nav() {
 						width='500'
 					/>
 				</div>
-				 <div className='nav-item connect-nav-item'>
-				<Link href='/connect'>Connect</Link>
+				<div
+					className='nav-item connect-nav-item'
+					data-testid='/connect'>
+					<Link href='/connect'>Connect</Link>
 				</div>
 			</div>
 		</nav>
