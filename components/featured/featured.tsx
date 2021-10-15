@@ -26,7 +26,7 @@ export default function FeaturedSection({ featuredFilms }: any) {
 		};
 	}, [index]);
 	return (
-		<div className='featured-slideshow'>
+		<div className='featured-slideshow' data-testid='featured-section'>
 			<div
 				className='featured-section'
 				style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
@@ -36,13 +36,15 @@ export default function FeaturedSection({ featuredFilms }: any) {
 						index: React.Key | null | undefined
 					) => {
 						return (
-							<div key={index} className='featured-slider'>
+							<div
+								key={index}
+								data-testid={`img-container${index}`}
+								className='featured-slider'>
 								<div
 									className='featured-image'
 									style={{
 										backgroundImage: ` url(${featuredFilm.featuredImg})`,
 									}}>
-									<i className='fas fa-chevron-left'></i>
 									<button className='modal-button'>
 										More Info{' '}
 									</button>
@@ -51,6 +53,24 @@ export default function FeaturedSection({ featuredFilms }: any) {
 						);
 					}
 				)}
+			</div>
+			<div className='slideshowDots'>
+				{featuredFilms.map((_: any, idx: number) => (
+					<div
+						key={idx}
+						className={`slideshowDot${
+							index === idx ? ' active' : ''
+						}`}
+						onClick={() => {
+							setIndex(idx);
+						}}></div>
+				))}
+			</div>
+			<div className='icon icon-left'>
+				<i className='fas fa-chevron-left'></i>
+			</div>
+			<div className='icon icon-right'>
+				<i className='fas fa-chevron-right'></i>
 			</div>
 		</div>
 	);

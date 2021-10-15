@@ -2,6 +2,8 @@
     margin: 0 auto;
     overflow: hidden;
     max-width: 100%;
+    position: relative;
+    text-align: center;
     .featured-section {
         white-space: nowrap;
         transition: ease-in-out 2000ms;
@@ -22,16 +24,86 @@
                 .modal-button {
                     position: absolute;
                     min-width: 227px;
+                    max-width: 227px;
                     height: 80px;
+                    max-height: 80px;
                     text-align: center;
                     color: white;
                     font-size: 2rem;
                     border-radius: 1.75rem;
                     border: 1px solid #ffffff;
                     background-color: #141414;
-                    bottom: 1rem;
+                    bottom: 3rem;
+                    cursor: pointer;
                 }
             }
+        }
+    }
+    .slideshowDots {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        right: 0;
+        bottom: 1rem;
+        .slideshowDot {
+            text-align: center;
+            display: inline-block;
+            height: 20px;
+            width: 80px;
+            border-radius: 10%;
+            cursor: pointer;
+            margin: 15px 7px 0px;
+            background-color: #c4c4c4;
+            transition: 2s;
+        }
+        .slideshowDot.active {
+            background-color: #2d3a3b;
+        }
+    }
+    .icon {
+        position: absolute;
+        color: white;
+        background-color: #2d3a3b;
+        border-radius: 50%;
+        padding: 1rem;
+        top: 50%;
+        transition: 2s;
+        cursor: pointer;
+        &:hover {
+            transform: scale(1.2);
+            background-color: white;
+            color: #2d3a3b;
+        }
+    }
+    .icon-left {
+        left: 1rem;
+    }
+    .icon-right {
+        right: 1rem;
+    }
+}
+
+$breakpoint-tablet: 768px;
+@media (max-width: $breakpoint-tablet) {
+    .featured-slideshow {
+        .featured-section {
+            .featured-slider {
+                .featured-image {
+                    height: 300px;
+                    .modal-button {
+                        width: 164px;
+                        max-width: 164px;
+                        height: 52px;
+                        max-height: 52px;
+                        border-radius: 1rem;
+                        font-size: 1.5rem;
+                        bottom: 2.5rem;
+                    }
+                }
+            }
+        }
+        .slideshowDots {
+            bottom: 0.75rem;
         }
     }
 }
