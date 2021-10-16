@@ -12,12 +12,14 @@ export default function Nav() {
 				</div>
 
 				<div className='logo' data-testid='logo'>
-					<Image
-						src='/assets/images/FlemingPictures.png'
-						alt='logo'
-						height='500'
-						width='500'
-					/>
+					<Link href='/#' passHref>
+						<Image
+							src='/assets/images/FlemingPictures.png'
+							alt='logo'
+							height='500'
+							width='500'
+						/>
+					</Link>
 				</div>
 				<div
 					className='nav-item connect-nav-item'

@@ -1,16 +1,21 @@
-import React from 'react';
-
+import React, { MouseEventHandler } from 'react';
+import { FeaturedFilm, FeaturedFilms } from '../../utils/types/types';
 const delay = 8000;
 
-export default function FeaturedSection({ featuredFilms }: any) {
+export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 	const [index, setIndex] = React.useState(0);
+	const [width, setWidth] = React.useState(769);
+
+	const breakpoint = 768;
 	const timeoutRef: any = React.useRef(null);
 	function resetTimeout() {
 		if (timeoutRef.current) {
 			clearTimeout(timeoutRef.current);
 		}
 	}
-
+	React.useEffect(() => {
+		window.addEventListener('resize', () => setWidth(window.innerWidth));
+	}, []);
 	React.useEffect(() => {
 		resetTimeout();
 		timeoutRef.current = setTimeout(
@@ -25,6 +30,25 @@ export default function FeaturedSection({ featuredFilms }: any) {
 			resetTimeout();
 		};
 	}, [index]);
+
+	function handleChangeSlideshowItem(index: number, click?: string): void {
+		if (!click) {
+			setIndex(index);
+		} else if (click === 'prev') {
+			if (index < 0) {
+				setIndex(featuredFilms.length - 1);
+			} else {
+				setIndex(index);
+			}
+		} else if (click === 'forward') {
+			if (index > featuredFilms.length - 1) {
+				setIndex(0);
+			} else {
+				setIndex(index);
+			}
+		}
+	}
+
 	return (
 		<div className='featured-slideshow' data-testid='featured-section'>
 			<div
@@ -32,7 +56,7 @@ export default function FeaturedSection({ featuredFilms }: any) {
 				style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
 				{featuredFilms.map(
 					(
-						featuredFilm: { featuredImg: any },
+						featuredFilm: FeaturedFilm,
 						index: React.Key | null | undefined
 					) => {
 						return (
@@ -43,10 +67,14 @@ export default function FeaturedSection({ featuredFilms }: any) {
 								<div
 									className='featured-image'
 									style={{
-										backgroundImage: ` url(${featuredFilm.featuredImg})`,
+										backgroundImage: ` url(${
+											width < breakpoint
+												? featuredFilm.posterImg
+												: featuredFilm.featuredImg
+										})`,
 									}}>
 									<button className='modal-button'>
-										More Info{' '}
+										More Info
 									</button>
 								</div>
 							</div>
@@ -61,15 +89,17 @@ export default function FeaturedSection({ featuredFilms }: any) {
 						className={`slideshowDot${
 							index === idx ? ' active' : ''
 						}`}
-						onClick={() => {
-							setIndex(idx);
-						}}></div>
+						onClick={() => handleChangeSlideshowItem(idx)}></div>
 				))}
 			</div>
-			<div className='icon icon-left'>
+			<div
+				className='icon icon-left'
+				onClick={() => handleChangeSlideshowItem(index - 1, 'prev')}>
 				<i className='fas fa-chevron-left'></i>
 			</div>
-			<div className='icon icon-right'>
+			<div
+				className='icon icon-right'
+				onClick={() => handleChangeSlideshowItem(index + 1, 'forward')}>
 				<i className='fas fa-chevron-right'></i>
 			</div>
 		</div>

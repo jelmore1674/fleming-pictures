@@ -10,14 +10,15 @@ nav {
         .logo {
             max-width: 267px;
             margin-top: 4rem;
+            cursor: pointer;
             animation: slideIn 2s ease-in-out;
         }
         @keyframes slideIn {
             0% {
-                transform: translateY(-260px)
+                transform: translateY(-260px);
             }
             100% {
-                transform: translateY(0px)
+                transform: translateY(0px);
             }
         }
     }
@@ -35,19 +36,16 @@ nav {
     a {
         color: white;
         font-size: 3rem;
-        
         text-decoration: none;
         transition: 2s;
-       &:hover {
+        &:hover {
             color: black;
             -webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: white;
             transform: translateY(-20%);
             transition: ease-in-out;
             transition-duration: 2s;
-        } 
-        
-        
+        }
     }
     .about-nav-item {
         transition: 2s;
