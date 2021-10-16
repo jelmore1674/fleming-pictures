@@ -8,15 +8,16 @@ export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 
 	const breakpoint = 768;
 	const timeoutRef: any = React.useRef(null);
-	function resetTimeout() {
-		if (timeoutRef.current) {
-			clearTimeout(timeoutRef.current);
-		}
-	}
+
 	React.useEffect(() => {
 		window.addEventListener('resize', () => setWidth(window.innerWidth));
 	}, []);
 	React.useEffect(() => {
+		function resetTimeout() {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current);
+			}
+		}
 		resetTimeout();
 		timeoutRef.current = setTimeout(
 			() =>
@@ -29,7 +30,7 @@ export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 		return () => {
 			resetTimeout();
 		};
-	}, [index]);
+	}, [featuredFilms.length, index]);
 
 	function handleChangeSlideshowItem(index: number, click?: string): void {
 		if (!click) {
