@@ -17,8 +17,8 @@
         transition: 2s ease-in-out;
     }
     .modal {
-        max-height: 80%;
-        max-width: 70%;
+        height: 80vh;
+        max-width: 80%;
         background-color: #141414;
         border-radius: 20px;
         border: 1px solid #fff;
@@ -44,6 +44,8 @@
                 text-align: center;
             }
             .video-container {
+                display: flex;
+                justify-content: center;
                 max-width: 100%;
             }
             p {
