@@ -6,8 +6,12 @@ export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 	const [index, setIndex] = React.useState(0);
 	const [width, setWidth] = React.useState(769);
 
+	interface TimeoutRef {
+		current: window.timeout;
+	}
+
 	const breakpoint = 768;
-	const timeoutRef: any = React.useRef(null);
+	const timeoutRef: TimeoutRef = React.useRef(null);
 
 	React.useEffect(() => {
 		window.addEventListener('resize', () => setWidth(window.innerWidth));

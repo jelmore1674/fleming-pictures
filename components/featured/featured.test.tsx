@@ -28,9 +28,12 @@ describe('featured component', () => {
 		const featured = render(<Featured featuredFilms={mockFilms} />);
 
 		const featuredSection = screen.getByTestId('featured-section');
-		const img = screen.getByTestId('img-container0');
+
+		for (let i = 0; i < mockFilms.length; i++) {
+			const img = screen.getByTestId('img-container' + i);
+			expect(img).toBeInTheDocument();
+		}
 
 		expect(featuredSection).toBeInTheDocument();
-		expect(img).toBeInTheDocument();
 	});
 });
