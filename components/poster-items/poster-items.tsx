@@ -8,9 +8,7 @@ export default function PosterItem({ poster }: any) {
 				className='poster-image'
 				style={{
 					backgroundImage: ` url(${poster})`,
-				}}>
-				PosterItem
-			</div>
+				}}></div>
 		</div>
 	);
 }

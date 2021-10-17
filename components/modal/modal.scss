@@ -1,3 +1,66 @@
-.video-container {
-    width: 33%;
+.portal {
+    background-color: rgba(255, 255, 255, 0.8);
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.5s ease-in-out;
+    transition: 0.5s ease-in-out;
+    &:before {
+        transition: 2s ease-in-out;
+    }
+    &:after {
+        transition: 2s ease-in-out;
+    }
+    .modal {
+        max-height: 80%;
+        max-width: 70%;
+        background-color: #141414;
+        border-radius: 20px;
+        border: 1px solid #fff;
+        overflow: hidden;
+        position: relative;
+        animation: fadeIn 1s ease-in-out;
+        transition: 2s ease-in-out;
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        h3 {
+            margin: 0;
+        }
+        .modal-container {
+            max-width: 80%;
+            margin: auto;
+            .movie-title {
+                text-align: center;
+            }
+            .video-container {
+                max-width: 100%;
+            }
+            p {
+                line-height: 1.75rem;
+                margin-bottom: 2rem;
+            }
+        }
+        i {
+            position: absolute;
+            cursor: pointer;
+            font-size: 2rem;
+            top: 2%;
+            right: 5%;
+            transition: 1s ease-in-out;
+            &:hover {
+                color: #707070;
+            }
+        }
+    }
 }

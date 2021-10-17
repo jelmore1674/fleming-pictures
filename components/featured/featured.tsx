@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import { FeaturedFilm, FeaturedFilms } from '../../utils/types/types';
 const delay = 8000;
 
-export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
+export default function FeaturedSection({ featuredFilms, openModal }: any) {
 	const [index, setIndex] = React.useState(0);
 	const [width, setWidth] = React.useState(769);
 
@@ -78,7 +78,9 @@ export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 												: featuredFilm.featuredImg
 										})`,
 									}}>
-									<button className='modal-button'>
+									<button
+										className='modal-button'
+										onClick={() => openModal(featuredFilm)}>
 										More Info
 									</button>
 								</div>
