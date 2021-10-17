@@ -1,15 +1,16 @@
 import React from 'react';
 import { FeaturedFilms, FeaturedFilm } from '../../utils/types/types';
 
-export default function PosterItem(featuredFilm: FeaturedFilm) {
+export default function PosterItem({ poster }: any) {
 	return (
-		<div
-			className='poster-item'
-			style={{
-				backgroundImage: ` url(${featuredFilm.posterImg})`,
-			}}>
-			{console.log(featuredFilm.posterImg)}
-			PosterItem
+		<div className='poster-item'>
+			<div
+				className='poster-image'
+				style={{
+					backgroundImage: ` url(${poster})`,
+				}}>
+				PosterItem
+			</div>
 		</div>
 	);
 }

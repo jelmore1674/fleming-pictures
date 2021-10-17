@@ -1,19 +1,8 @@
 import React from 'react';
-import { FeaturedFilms, FeaturedFilm } from '../../utils/types/types';
 
-function PosterItem({ poster }: any) {
-	return (
-		<div className='poster-item'>
-			<div
-				className='poster-image'
-				style={{
-					backgroundImage: ` url(${poster})`,
-				}}>
-				PosterItem
-			</div>
-		</div>
-	);
-}
+import PosterItem from '../poster-items/poster-items';
+
+import { FeaturedFilms, FeaturedFilm } from '../../utils/types/types';
 
 export default function PosterGrid({ featuredFilms }: FeaturedFilms) {
 	return (

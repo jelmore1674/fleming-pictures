@@ -1,0 +1,10 @@
+.poster-item {
+    width: 223px;
+    height: 333px;
+    .poster-image {
+        background-repeat: no-repeat;
+        background-size: cover;
+        border: 2px solid white;
+        height: 100%;
+    }
+}
