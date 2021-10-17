@@ -1,6 +1,7 @@
 import React, { Fragment, ReactElement } from 'react';
 import Head from 'next/head';
 import Nav from '../components/nav/nav';
+import Footer from '../components/footer/footer';
 
 export default function Layout({ children }: any) {
 	return (
@@ -28,6 +29,7 @@ export default function Layout({ children }: any) {
 			</Head>
 			<Nav />
 			<main>{children}</main>
+			<Footer />
 		</Fragment>
 	);
 }

@@ -3,6 +3,9 @@ import Head from 'next/head';
 const About: NextPage = () => {
 	return (
 		<div className='about'>
+			<Head>
+				<title>Fleming Pictues | About</title>
+			</Head>
 			<h1>About</h1>
 			<p>
 				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsam
