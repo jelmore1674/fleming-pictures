@@ -7,7 +7,7 @@ export default function FeaturedSection({ featuredFilms }: FeaturedFilms) {
 	const [width, setWidth] = React.useState(769);
 
 	interface TimeoutRef {
-		current: window.timeout;
+		current: any;
 	}
 
 	const breakpoint = 768;
