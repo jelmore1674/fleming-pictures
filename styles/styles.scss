@@ -30,3 +30,23 @@ h3 {
 p {
     font-family: 'Prompt', sans-serif;
 }
+
+.about {
+    width: 80%;
+    margin: 0 auto;
+    h1 {
+        font-weight: normal;
+        font-size: 3rem;
+    }
+    p {
+        line-height: 2.5rem;
+        font-weight: 300;
+        text-indent: 5ch;
+        margin-bottom: 2rem;
+    }
+}
+
+.twitter-container {
+    max-width: 80%;
+    margin: auto;
+}
