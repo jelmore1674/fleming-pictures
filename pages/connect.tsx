@@ -7,7 +7,7 @@ const Connect = () => {
 			<h3>Keep up to date with our Socials</h3>
 			<TwitterTimelineEmbed
 				sourceType='profile'
-				screenName='flemingpjd'
+				screenName='flemingpictures'
 				theme='dark'
 				options={{ height: '700' }}
 			/>
