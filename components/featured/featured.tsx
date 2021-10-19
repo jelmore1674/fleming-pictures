@@ -4,7 +4,7 @@ const delay = 8000;
 
 export default function FeaturedSection({ featuredFilms, openModal }: any) {
 	const [index, setIndex] = React.useState(0);
-	const [width, setWidth] = React.useState(769);
+	const [width, setWidth] = React.useState(900);
 
 	interface TimeoutRef {
 		current: any;
@@ -12,6 +12,10 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 
 	const breakpoint = 768;
 	const timeoutRef: TimeoutRef = React.useRef(null);
+
+	React.useEffect(() => {
+		setWidth(window.innerWidth);
+	}, []);
 
 	React.useEffect(() => {
 		window.addEventListener('resize', () => setWidth(window.innerWidth));
@@ -58,6 +62,7 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 		<div className='featured-slideshow' data-testid='featured-section'>
 			<div
 				className='featured-section'
+				data-testid={`feature-img-${index}`}
 				style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
 				{featuredFilms.map(
 					(
@@ -79,6 +84,8 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 										})`,
 									}}>
 									<button
+										id={`btn-${index}`}
+										data-testid={`btn-${index}`}
 										className='modal-button'
 										onClick={() => openModal(featuredFilm)}>
 										More Info
@@ -93,6 +100,7 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 				{featuredFilms.map((_: any, idx: number) => (
 					<div
 						key={idx}
+						data-testid={`slider-status-${idx}`}
 						className={`slideshowDot${
 							index === idx ? ' active' : ''
 						}`}
@@ -101,11 +109,13 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 			</div>
 			<div
 				className='icon icon-left'
+				data-testid='cursor-left'
 				onClick={() => handleChangeSlideshowItem(index - 1, 'prev')}>
 				<i className='fas fa-chevron-left'></i>
 			</div>
 			<div
 				className='icon icon-right'
+				data-testid='cursor-right'
 				onClick={() => handleChangeSlideshowItem(index + 1, 'forward')}>
 				<i className='fas fa-chevron-right'></i>
 			</div>

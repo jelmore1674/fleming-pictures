@@ -49,10 +49,10 @@ nav {
     }
     .about-nav-item {
         transition: 2s;
-        animation: slideInFromLeft 2s;
+        animation: slideInFromLeft 3s;
         @keyframes slideInFromLeft {
             0% {
-                transform: translateX(-50%);
+                transform: translateX(-250%);
             }
             100% {
                 transform: translateX(0px);
@@ -61,10 +61,10 @@ nav {
     }
     .connect-nav-item {
         transition: 2s;
-        animation: slideInFromRight 2s;
+        animation: slideInFromRight 3s;
         @keyframes slideInFromRight {
             0% {
-                transform: translateX(50%);
+                transform: translateX(250%);
             }
             100% {
                 transform: translateX(0px);
@@ -84,6 +84,25 @@ $breakpoint-tablet: 768px;
         }
         a {
             font-size: 2rem;
+        }
+    }
+}
+
+$breakpoint-mobile: 500px;
+@media (max-width: $breakpoint-mobile) {
+    nav {
+        .nav {
+            display: flex;
+            flex-direction: column;
+            .nav-item {
+                margin-top: 5rem;
+            }
+        }
+        .nav :nth-child(2) {
+            order: -1;
+        }
+        a {
+            font-size: 1.5rem;
         }
     }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent, act } from '@testing-library/react';
 import Featured from './featured';
+import featured from './featured';
 
 const mockFilms = [
 	{
@@ -26,14 +27,125 @@ const mockFilms = [
 describe('featured component', () => {
 	it('renders component', () => {
 		const featured = render(<Featured featuredFilms={mockFilms} />);
-
 		const featuredSection = screen.getByTestId('featured-section');
-
-		for (let i = 0; i < mockFilms.length; i++) {
-			const img = screen.getByTestId('img-container' + i);
-			expect(img).toBeInTheDocument();
-		}
-
 		expect(featuredSection).toBeInTheDocument();
+		expect(featured).toMatchSnapshot();
+	});
+	it('has multiple images', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const img1 = screen.getByTestId('img-container0');
+		const img2 = screen.getByTestId('img-container1');
+		expect(img1).toBeInTheDocument();
+		expect(img2).toBeInTheDocument();
+	});
+	it('changes image in slideshow', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const index = screen.getByTestId('slider-status-1');
+		fireEvent.click(index);
+		const featuredImage = screen.getByTestId('feature-img-1');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-1 * 100}%, 0, 0)`
+		);
+	});
+	it('changes image in slideshow', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const cursorRight = screen.getByTestId('cursor-right');
+		fireEvent.click(cursorRight);
+		const featuredImage = screen.getByTestId('feature-img-1');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-1 * 100}%, 0, 0)`
+		);
+	});
+	it('changes image in slideshow at end it goes back to 0', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const cursorRight = screen.getByTestId('cursor-right');
+		fireEvent.click(cursorRight);
+		fireEvent.click(cursorRight);
+		const featuredImage = screen.getByTestId('feature-img-0');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-0 * 100}%, 0, 0)`
+		);
+	});
+
+	it('previous button works', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const cursorRight = screen.getByTestId('cursor-right');
+		const cursorLeft = screen.getByTestId('cursor-left');
+		fireEvent.click(cursorRight);
+		fireEvent.click(cursorLeft);
+		const featuredImage = screen.getByTestId('feature-img-0');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-0 * 100}%, 0, 0)`
+		);
+	});
+	it('previous button works', () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const cursorRight = screen.getByTestId('cursor-right');
+		const cursorLeft = screen.getByTestId('cursor-left');
+
+		fireEvent.click(cursorLeft);
+		const featuredImage = screen.getByTestId('feature-img-1');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-1 * 100}%, 0, 0)`
+		);
+	});
+	it('changes after timer', async () => {
+		jest.useFakeTimers();
+		jest.spyOn(global, 'setTimeout');
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 8000);
+
+		await act(async () => {
+			await jest.advanceTimersByTime(9000);
+		});
+		const featuredImage = screen.getByTestId('feature-img-1');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-1 * 100}%, 0, 0)`
+		);
+	});
+	it('changes after timer', async () => {
+		jest.useFakeTimers();
+		jest.spyOn(global, 'setTimeout');
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 8000);
+
+		await act(async () => {
+			await jest.advanceTimersByTime(9000);
+		});
+		await act(async () => {
+			await jest.advanceTimersByTime(9000);
+		});
+		const featuredImage = screen.getByTestId('feature-img-0');
+		expect(featuredImage.outerHTML).toContain(
+			`translate3d(${-0 * 100}%, 0, 0)`
+		);
+	});
+	it('test the height', async () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		Object.defineProperty(window, 'innerWidth', {
+			writable: true,
+			configurable: true,
+			value: 150,
+		});
+
+		await act(async () => {
+			await window.dispatchEvent(new Event('resize'));
+		});
+
+		expect(window.innerWidth).toBe(150);
+	});
+	it('test the height', async () => {
+		const featured = render(<Featured featuredFilms={mockFilms} />);
+		Object.defineProperty(window, 'innerWidth', {
+			writable: true,
+			configurable: true,
+			value: 1500,
+		});
+
+		await act(async () => {
+			await window.dispatchEvent(new Event('resize'));
+		});
+
+		expect(window.innerWidth).toBe(1500);
 	});
 });

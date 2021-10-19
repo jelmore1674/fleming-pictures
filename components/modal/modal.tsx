@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 export default function Modal({ film, closeModal }: any) {
 	return (
 		<div className='portal' onClick={closeModal}>
-			<div className='modal'>
+			<div className='modal' data-testid='modal'>
 				<div className='modal-container'>
 					<h3 className='movie-title'>{film.title}</h3>
 					<div className='video-container'>
@@ -20,7 +20,10 @@ export default function Modal({ film, closeModal }: any) {
 					<h3>Sypnosis</h3>
 					<p>{film.sypnosis}</p>
 				</div>
-				<i className='fas fa-times icon' onClick={closeModal}></i>
+				<i
+					className='fas fa-times icon'
+					onClick={closeModal}
+					data-testid='close-modal'></i>
 			</div>
 		</div>
 	);
