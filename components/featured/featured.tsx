@@ -18,7 +18,17 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 	}, []);
 
 	React.useEffect(() => {
-		window.addEventListener('resize', () => setWidth(window.innerWidth));
+		let isMounted = true;
+
+		window.addEventListener('resize', () => {
+			if (isMounted) {
+				setWidth(window.innerWidth);
+			}
+		});
+
+		return () => {
+			isMounted = false;
+		};
 	}, []);
 	React.useEffect(() => {
 		function resetTimeout() {
@@ -86,6 +96,7 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 									<button
 										id={`btn-${index}`}
 										data-testid={`btn-${index}`}
+										role='button'
 										className='modal-button'
 										onClick={() => openModal(featuredFilm)}>
 										More Info

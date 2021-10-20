@@ -56,9 +56,13 @@ describe('featured component', () => {
 			`translate3d(${-1 * 100}%, 0, 0)`
 		);
 	});
-	it('changes image in slideshow at end it goes back to 0', () => {
+	it('changes image in slideshow at end it goes back to 0', async () => {
 		const featured = render(<Featured featuredFilms={mockFilms} />);
 		const cursorRight = screen.getByTestId('cursor-right');
+		await act(async () => {
+			await fireEvent.click(cursorRight);
+			await fireEvent.click(cursorRight);
+		});
 		fireEvent.click(cursorRight);
 		fireEvent.click(cursorRight);
 		const featuredImage = screen.getByTestId('feature-img-0');

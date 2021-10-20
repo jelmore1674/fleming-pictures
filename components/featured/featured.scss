@@ -117,3 +117,15 @@ $breakpoint-tablet: 768px;
         }
     }
 }
+
+$breakpoint-mobile: 480px;
+@media (max-width: $breakpoint-mobile) {
+    .featured-slideshow {
+        .slideshowDots {
+            .slideshowDot {
+                height: 12px;
+                width: 65px;
+            }
+        }
+    }
+}

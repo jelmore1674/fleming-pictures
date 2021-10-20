@@ -1,10 +1,30 @@
 .poster-item {
     width: 223px;
     height: 333px;
+    margin-bottom: 2rem;
     .poster-image {
-        background-repeat: no-repeat;
-        background-size: cover;
         border: 2px solid white;
-        height: 100%;
+        overflow: hidden;
+        img {
+            object-fit: cover;
+            width: 100vw;
+            transition: 5s;
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+    .film-title {
+        margin-top: 1rem;
+        font-size: 1.5rem;
+    }
+}
+
+$breakpoint-tablet: 480px;
+@media (max-width: $breakpoint-tablet) {
+    .poster-item {
+        width: 100vw;
+        height: 400px;
+        max-height: 400px;
     }
 }

@@ -15,6 +15,7 @@ export default function PosterGrid({ featuredFilms }: FeaturedFilms) {
 							<PosterItem
 								key={index}
 								poster={featuredFilm.posterImg}
+								title={featuredFilm.title}
 							/>
 						);
 					}
