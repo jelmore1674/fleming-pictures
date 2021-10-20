@@ -1,8 +1,17 @@
 import React, { MouseEventHandler } from 'react';
 import { FeaturedFilm, FeaturedFilms } from '../../utils/types/types';
+
+interface FeaturedSectionProps {
+	featuredFilms: FeaturedFilm[];
+	openModal: (film: FeaturedFilm) => void;
+}
+
 const delay = 8000;
 
-export default function FeaturedSection({ featuredFilms, openModal }: any) {
+export default function FeaturedSection({
+	featuredFilms,
+	openModal,
+}: FeaturedSectionProps) {
 	const [index, setIndex] = React.useState(0);
 	const [width, setWidth] = React.useState(900);
 
@@ -51,20 +60,12 @@ export default function FeaturedSection({ featuredFilms, openModal }: any) {
 	}, [featuredFilms.length, index]);
 
 	function handleChangeSlideshowItem(index: number, click?: string): void {
-		if (!click) {
+		if (click === 'prev' && index < 0) {
+			setIndex(featuredFilms.length - 1);
+		} else if (click === 'forward' && index > featuredFilms.length - 1) {
+			setIndex(0);
+		} else {
 			setIndex(index);
-		} else if (click === 'prev') {
-			if (index < 0) {
-				setIndex(featuredFilms.length - 1);
-			} else {
-				setIndex(index);
-			}
-		} else if (click === 'forward') {
-			if (index > featuredFilms.length - 1) {
-				setIndex(0);
-			} else {
-				setIndex(index);
-			}
 		}
 	}
 

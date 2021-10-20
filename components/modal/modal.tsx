@@ -4,7 +4,7 @@ import ReactPlayer from 'react-player';
 export default function Modal({ film, closeModal }: any) {
 	return (
 		<div className='portal' onClick={closeModal}>
-			<div className='modal' data-testid='modal'>
+			<div className='modal' data-testid='modal' onClick={() => {}}>
 				<div className='modal-container'>
 					<div className='modal-content'>
 						<h3 className='movie-title'>{film.title}</h3>

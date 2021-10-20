@@ -26,20 +26,29 @@ const mockFilms = [
 
 describe('featured component', () => {
 	it('renders component', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const featuredSection = screen.getByTestId('featured-section');
 		expect(featuredSection).toBeInTheDocument();
 		expect(featured).toMatchSnapshot();
 	});
 	it('has multiple images', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const img1 = screen.getByTestId('img-container0');
 		const img2 = screen.getByTestId('img-container1');
 		expect(img1).toBeInTheDocument();
 		expect(img2).toBeInTheDocument();
 	});
 	it('changes image in slideshow', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const index = screen.getByTestId('slider-status-1');
 		fireEvent.click(index);
 		const featuredImage = screen.getByTestId('feature-img-1');
@@ -48,7 +57,10 @@ describe('featured component', () => {
 		);
 	});
 	it('changes image in slideshow', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const cursorRight = screen.getByTestId('cursor-right');
 		fireEvent.click(cursorRight);
 		const featuredImage = screen.getByTestId('feature-img-1');
@@ -57,7 +69,10 @@ describe('featured component', () => {
 		);
 	});
 	it('changes image in slideshow at end it goes back to 0', async () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const cursorRight = screen.getByTestId('cursor-right');
 		await act(async () => {
 			await fireEvent.click(cursorRight);
@@ -72,7 +87,10 @@ describe('featured component', () => {
 	});
 
 	it('previous button works', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const cursorRight = screen.getByTestId('cursor-right');
 		const cursorLeft = screen.getByTestId('cursor-left');
 		fireEvent.click(cursorRight);
@@ -83,7 +101,10 @@ describe('featured component', () => {
 		);
 	});
 	it('previous button works', () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		const cursorRight = screen.getByTestId('cursor-right');
 		const cursorLeft = screen.getByTestId('cursor-left');
 
@@ -96,7 +117,10 @@ describe('featured component', () => {
 	it('changes after timer', async () => {
 		jest.useFakeTimers();
 		jest.spyOn(global, 'setTimeout');
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 8000);
 
 		await act(async () => {
@@ -110,7 +134,10 @@ describe('featured component', () => {
 	it('changes after timer', async () => {
 		jest.useFakeTimers();
 		jest.spyOn(global, 'setTimeout');
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 8000);
 
 		await act(async () => {
@@ -125,7 +152,10 @@ describe('featured component', () => {
 		);
 	});
 	it('test the height', async () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		Object.defineProperty(window, 'innerWidth', {
 			writable: true,
 			configurable: true,
@@ -139,7 +169,10 @@ describe('featured component', () => {
 		expect(window.innerWidth).toBe(150);
 	});
 	it('test the height', async () => {
-		const featured = render(<Featured featuredFilms={mockFilms} />);
+		const openModal = jest.fn();
+		const featured = render(
+			<Featured featuredFilms={mockFilms} openModal={openModal} />
+		);
 		Object.defineProperty(window, 'innerWidth', {
 			writable: true,
 			configurable: true,
