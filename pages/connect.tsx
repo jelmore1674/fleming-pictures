@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 import { TwitterTimelineEmbed } from 'react-twitter-embed';
 
-const Connect = () => {
+const Connect: NextPage = () => {
 	return (
 		<div className='twitter-container'>
 			<h3>Keep up to date with our Socials</h3>
