@@ -93,21 +93,20 @@
     }
 }
 
-$breakpoint-tablet: 768px;
-@media (max-width: $breakpoint-tablet) {
+@media (max-width: 800px) {
     .featured-slideshow {
         .featured-section {
             .featured-slider {
                 .featured-image {
                     height: 300px;
                     .modal-button {
-                        width: 164px;
+                        width: 160px;
                         max-width: 164px;
-                        height: 52px;
+                        height: 48px;
                         max-height: 52px;
                         border-radius: 1rem;
-                        font-size: 1.5rem;
-                        bottom: 2.5rem;
+                        font-size: 1.4rem;
+                        bottom: 3rem;
                     }
                 }
             }

@@ -1,9 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Animated } from 'react-animated-css';
-
-export default function Nav() {
+const Nav: React.FC = () => {
 	return (
 		<nav>
 			<div className='nav'>
@@ -31,4 +29,6 @@ export default function Nav() {
 			</div>
 		</nav>
 	);
-}
+};
+
+export default Nav;

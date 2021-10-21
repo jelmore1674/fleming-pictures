@@ -1,22 +1,19 @@
 import React, { MouseEventHandler } from 'react';
-import { FeaturedFilm, FeaturedFilms } from '../../utils/types/types';
+import { FeaturedFilm } from '../../utils/types/types';
 
-interface FeaturedSectionProps {
+interface Props {
 	featuredFilms: FeaturedFilm[];
 	openModal: (film: FeaturedFilm) => void;
 }
 
 const delay = 8000;
 
-export default function FeaturedSection({
-	featuredFilms,
-	openModal,
-}: FeaturedSectionProps) {
+const FeaturedSection: React.FC<Props> = ({ featuredFilms, openModal }) => {
 	const [index, setIndex] = React.useState(0);
 	const [width, setWidth] = React.useState(900);
 
 	interface TimeoutRef {
-		current: any;
+		current: number | null;
 	}
 
 	const breakpoint = 768;
@@ -52,7 +49,7 @@ export default function FeaturedSection({
 					prevIndex === featuredFilms.length - 1 ? 0 : prevIndex + 1
 				),
 			delay
-		);
+		) as unknown as number;
 
 		return () => {
 			resetTimeout();
@@ -133,4 +130,6 @@ export default function FeaturedSection({
 			</div>
 		</div>
 	);
-}
+};
+
+export default FeaturedSection;

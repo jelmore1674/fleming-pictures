@@ -1,7 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent, act } from '@testing-library/react';
-import Featured from './featured';
-import featured from './featured';
+import Featured from '../components/featured/featured';
 
 const mockFilms = [
 	{

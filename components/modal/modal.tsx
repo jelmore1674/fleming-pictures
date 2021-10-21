@@ -1,7 +1,12 @@
 import React from 'react';
 import ReactPlayer from 'react-player';
 
-export default function Modal({ film, closeModal }: any) {
+interface Props {
+	film: { title: string; trailer: string; sypnosis: string };
+	closeModal: () => void;
+}
+
+const Modal: React.FC<Props> = ({ film, closeModal }) => {
 	return (
 		<div className='portal' onClick={closeModal}>
 			<div className='modal' data-testid='modal' onClick={() => {}}>
@@ -29,4 +34,5 @@ export default function Modal({ film, closeModal }: any) {
 			</div>
 		</div>
 	);
-}
+};
+export default Modal;
