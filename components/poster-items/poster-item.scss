@@ -20,8 +20,8 @@
     }
 }
 
-$breakpoint-tablet: 480px;
-@media (max-width: $breakpoint-tablet) {
+$breakpoint-mobile: 480px;
+@media (max-width: $breakpoint-mobile) {
     .poster-item {
         width: 100vw;
         height: 400px;

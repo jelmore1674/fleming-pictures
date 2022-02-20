@@ -2,7 +2,7 @@ import React, { MouseEventHandler } from 'react';
 import { FeaturedFilm } from '../../utils/types/types';
 
 interface Props {
-	featuredFilms: FeaturedFilm[];
+	featuredFilms: any;
 	openModal: (film: FeaturedFilm) => void;
 }
 
@@ -74,7 +74,7 @@ const FeaturedSection: React.FC<Props> = ({ featuredFilms, openModal }) => {
 				style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}>
 				{featuredFilms.map(
 					(
-						featuredFilm: FeaturedFilm,
+						featuredFilm: any,
 						index: React.Key | null | undefined
 					) => {
 						return (
@@ -87,8 +87,13 @@ const FeaturedSection: React.FC<Props> = ({ featuredFilms, openModal }) => {
 									style={{
 										backgroundImage: ` url(${
 											width < breakpoint
-												? featuredFilm.posterImg
-												: featuredFilm.featuredImg
+												? 'https:' +
+												  featuredFilm.fields.posterImg
+														.fields.file.url
+												: 'https:' +
+												  featuredFilm.fields
+														.featuredImg.fields.file
+														.url
 										})`,
 									}}>
 									<button

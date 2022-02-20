@@ -8,6 +8,7 @@ import FeaturedSection from '../components/featured/featured';
 import PosterGrid from '../components/poster-grid/poster-grid';
 import Modal from '../components/modal/modal';
 import Portal from '../components/portal/portal';
+import { createClient } from 'contentful';
 const featuredFilms = [
 	{
 		title: 'The Chronus',
@@ -27,9 +28,35 @@ const featuredFilms = [
 	},
 ];
 
-const Home: NextPage = () => {
+export async function getStaticProps() {
+	const client = createClient({
+		space: process.env.CONTENTFUL_SPACE as string,
+		accessToken: process.env.CONTENTFUL_API_TOKEN as string,
+	});
+
+	const res = await client.getEntries({
+		order: 'sys.createdAt',
+		content_type: 'movie',
+	});
+
+	return {
+		props: {
+			films: res.items,
+		},
+		revalidate: 30,
+	};
+}
+
+const Home: NextPage = ({ films }: any) => {
 	const [modalFilm, setModalFilm] = React.useState(featuredFilms[0]);
 	const [isModalOpen, setIsModalOpen] = React.useState(false);
+	let featured: any = [];
+	films.forEach((film: any) => {
+		if (film.fields.isFeatured) {
+			featured.push(film);
+		}
+	});
+
 	function closeModal() {
 		setIsModalOpen(false);
 	}
@@ -41,11 +68,8 @@ const Home: NextPage = () => {
 
 	return (
 		<div>
-			<FeaturedSection
-				featuredFilms={featuredFilms}
-				openModal={openModal}
-			/>
-			<PosterGrid featuredFilms={featuredFilms} />
+			<FeaturedSection featuredFilms={featured} openModal={openModal} />
+			<PosterGrid featuredFilms={films} />
 			{isModalOpen && (
 				<Portal>
 					<Modal film={modalFilm} closeModal={closeModal} />
